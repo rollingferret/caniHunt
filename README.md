@@ -1,2 +1,1 @@
-# first-solo-project
-# caniHunt
+# first-solo-project caniHunt
