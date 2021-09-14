@@ -26,7 +26,8 @@ module.exports = {
       },
       productTypeId: {
         allowNull: false,
-        type: Sequelize.INT
+        type: Sequelize.INTEGER,
+        references: { model: "ProductTypes" }
       },
       createdAt: {
         allowNull: false,
@@ -38,7 +39,8 @@ module.exports = {
       }
     });
   },
-  down: (queryInterface, Sequelize) => {
+
+down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Products');
   }
 };
