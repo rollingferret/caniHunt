@@ -50,7 +50,7 @@ router.delete('/:productId', restoreUser, asyncHandler(async (req, res) => {
 
     await singleProduct.destroy();
 
-    const products = await Photo.findAll({
+    const products = await Product.findAll({
 
     });
 
