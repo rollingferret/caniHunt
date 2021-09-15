@@ -17,7 +17,6 @@ function ProductPage() {
     
     
     const product = useSelector(state => {
-        // return state.product.GET_ALLPRODUCT;
         return state.product;
     });
     
@@ -30,17 +29,24 @@ function ProductPage() {
     // }, [dispatch]);
 
     console.log('test------------------------2-', product)
-    console.log('teeeeeeeeeest -----------------------3', product.map)
+    console.log('teeeeeeeeeest -----------------------3', product.list)
 
-    if (!product[1]) {
+    let test = product.list
+
+    if (!product.list) {
         return null;
     } else {
     return (
         <>
             <div>TEEEEEEEEEEST</div>
             <div>{product[1].title}</div>
-            <ul>
-
+            <ul>{test.map((product => (
+            <div key={product.id} className= 'products'>
+            <li>{product.id}</li>
+            <li>{product.description}</li>
+            <li>{product.imageUrl}</li>
+            </div>
+            )))}
             </ul>
         </>
     );
