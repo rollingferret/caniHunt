@@ -42,6 +42,9 @@ export const getAllProduct = () => async (dispatch) => {
     }
 };
 
+// export const getAllProduce = (state) => Object.values(state.produce);
+
+
 // const getProductAction = () => {
 //     return {
 //         type: GET_PRODUCT,
