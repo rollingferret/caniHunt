@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { getAllProduct } from '../../store/product';
+import { addProduct } from '../../store/product';
 import './newproduct.css'
 
 function NewProductPage() {
@@ -9,27 +9,32 @@ function NewProductPage() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const { productId } = useParams();
-
     // console.log('teeeeeeeeeeeeeeeeeeeeeeest', history);
 
     // const product = useSelector(state => state?.product?.product)
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [imageUrl, setImageUrl] = useState('');
-    const [productType, setProductType] = useState('');
+    const [productTypeId, setProductTypeId] = useState('');
     const [errors, setErrors] = useState([]);
 
-    
-    const product = useSelector(state => {
-        return state.product;
-    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-    
-        // history.push('/');
+        const newProduct = {
+            title: title,
+            description: description,
+            imageUrl: imageUrl,
+            productTypeId: productTypeId
+        };
+
+        // const newItem = await dispatch(addProduct(newProduct));
+
+
+        dispatch(addProduct(newProduct));
+        history.push(`/`);
+        // history.push(`/users/${userId}/`);
         }
     
     return (
@@ -67,8 +72,8 @@ function NewProductPage() {
         <input
           type="productType"
           name="productType"
-          value={productType}
-          onChange={(e) => setProductType(e.target.value)}
+          value={productTypeId}
+          onChange={(e) => setProductTypeId(e.target.value)}
         />
       </label>
       <button
@@ -80,6 +85,6 @@ function NewProductPage() {
     </form>
         </>
     );
-    }
+}
 
 export default NewProductPage;

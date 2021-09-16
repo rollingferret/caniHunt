@@ -13,6 +13,20 @@ const load = list => ({
     list,
 });
 
+
+const newProductAction = (product) => {
+    return {
+        type: ADD_PRODUCT,
+        product
+    };
+};
+
+const editProductAction = (product) => {
+    return {
+        type: EDIT_PRODUCT,
+        product
+    };
+};
 // const getAllProductAction = product => ({
 //         type: GET_ALLPRODUCT,
 //         product
@@ -42,6 +56,41 @@ export const getAllProduct = () => async (dispatch) => {
         dispatch(load(list));
     }
 };
+
+export const addProduct = ({ title, imageUrl, description }) => async (dispatch) => {
+    const response = await csrfFetch(`/api/products/new`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ title, imageUrl, description })
+    });
+
+    const addedProduct = await response.json();
+
+    dispatch(newProductAction(addedProduct));
+    return addedProduct;
+}
+
+// const addProduct = ({ title, imageUrl, description, productTypeId }) => async (dispatch) => {
+//     const response = await csrfFetch(`/api/product/new`, {
+//     method: 'POST',
+//     body: JSON.stringify({title, imageUrl, description, productTypeId })
+//     }
+
+export const editProduct = (productId, product) => async (dispatch) => {
+    const response = await csrfFetch(`/api/products/${productId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(product)
+    });
+    const edittedProduct = await response.json();
+    
+    dispatch(editProductAction(edittedProduct));
+    return edittedProduct;
+}
 
 // export const getAllProduce = (state) => Object.values(state.produce);
 
@@ -99,13 +148,37 @@ const productReducer = (state=initialState, action) => {
             };
         }
         case ADD_PRODUCT:
-            newState = Object.assign({}, state);
-            return newState;
+            // newState = Object.assign({}, state);
+            // newState.product = action.product;
+            // return newState;
+            // return {
+            //     ...state,
+            //     product: [
+            //         ...state.product, {
+            //         }
+            //     ]
+
+
+            // }
+
+            return { ...state, entries: [...state.entries, action.product] };
+
+
+    //         console.log(action.product);
+    //   return {
+    //     ...state,
+    //     [action.product]: {
+    //       ...state[action.product],
+    //       product: [...state[action.product], action.product],
+    //     },
+    //   };
         case GET_PRODUCT:
             newState = Object.assign({}, state);
+            newState.product = action.product;
             return newState;
         case EDIT_PRODUCT:
             newState = Object.assign({}, state);
+            newState.product = action.product;
             return newState;
         case DELETE_PRODUCT:
             newState = Object.assign({}, state);

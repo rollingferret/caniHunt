@@ -25,7 +25,6 @@ module.exports = {
         type: Sequelize.TEXT
       },
       productTypeId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: "ProductTypes" }
       },

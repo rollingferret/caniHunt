@@ -44,8 +44,8 @@ function ProductPage() {
             {test.map((product => (
             <div key={product.id} className= 'products'>
                 <div className = 'fullproductleft'>
-                <img src={product.imageUrl} className= 'images'/>
-                <div class='fullproductdescription'>
+                <img src={product.imageUrl} className= 'images' alt=''/>
+                <div className='fullproductdescription'>
                 <div className = 'fullproducttitle'>{product.title}</div>
                 <div className = 'fullproductdesc'>{product.description}</div>
                 <div className='fullproductbottom'>num reviews</div>
