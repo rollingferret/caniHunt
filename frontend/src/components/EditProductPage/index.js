@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { getAllProduct } from '../../store/product';
-import './newproduct.css'
+import './editproduct.css'
 
-function NewProductPage() {
+function EditProductPage() {
 
     const dispatch = useDispatch();
     const history = useHistory();
-
-    const { productId } = useParams();
 
     // console.log('teeeeeeeeeeeeeeeeeeeeeeest', history);
 
@@ -75,11 +73,11 @@ function NewProductPage() {
         type="submit"
         disabled={errors.length > 0}
       >
-        Post your Product!
+        Edit your Product!
       </button>
     </form>
         </>
     );
     }
 
-export default NewProductPage;
+export default EditProductPage;

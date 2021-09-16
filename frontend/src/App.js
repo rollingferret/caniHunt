@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ProductPage from './components/ProductPage';
 import NewProductPage from './components/NewProductPage';
+import EditProductPage from './components/EditProductPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,8 @@ function App() {
       )}
       <ProductPage />
       <NewProductPage />
+      <EditProductPage />
+
     </>
   );
 }
