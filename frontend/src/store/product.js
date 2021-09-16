@@ -18,6 +18,7 @@ const load = list => ({
 //         product
 //     });
 
+// forgot () syntax
 // export const getAllProducts = () => async dispatch => {
 //     const response = await fetch(`/api/products`);
     

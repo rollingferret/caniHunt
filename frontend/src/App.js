@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ProductPage from './components/ProductPage';
+import NewProductPage from './components/NewProductPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
         </Switch>
       )}
       <ProductPage />
+      <NewProductPage />
     </>
   );
 }

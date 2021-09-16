@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { getAllProduct } from '../../store/product';
-import './fullproductpage.css'
 
 
 function ProductPage() {
@@ -39,22 +38,16 @@ function ProductPage() {
     } else {
     return (
         <>
-            <div className = 'fullproductpage'>
-            {/* <div>{product[1].title}</div> */}
-            {test.map((product => (
+            <div>TEEEEEEEEEEST</div>
+            <div>{product[1].title}</div>
+            <ul>{test.map((product => (
             <div key={product.id} className= 'products'>
-                <div className = 'fullproductleft'>
-                <img src={product.imageUrl} className= 'images'/>
-                <div class='fullproductdescription'>
-                <div className = 'fullproducttitle'>{product.title}</div>
-                <div className = 'fullproductdesc'>{product.description}</div>
-                <div className='fullproductbottom'>num reviews</div>
-                </div>
-            </div>
-            <div className='fullproductright'></div>
+            <li>{product.id}</li>
+            <li>{product.description}</li>
+            <li>{product.imageUrl}</li>
             </div>
             )))}
-            </div>
+            </ul>
         </>
     );
     }

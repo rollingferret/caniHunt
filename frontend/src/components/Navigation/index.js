@@ -24,14 +24,19 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li>
+    <>
+    <div className = 'navContainer' >
+      <div className = 'homeButton' >
         <NavLink exact to="/">
           <i className="fas fa-home">Home</i>
         </NavLink>
+      </div>
+      <div className = 'logStuff' >
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    </div>
+    </div>
+    <div className = 'navBuffer'></div>
+    </>
   );
 }
 
