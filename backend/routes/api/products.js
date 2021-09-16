@@ -30,28 +30,32 @@ router.get('/:productId', restoreUser, asyncHandler( async (req, res) => {
 
 router.post('/new', restoreUser, asyncHandler( async (req, res) => {
 
-    // const ownerId = req.user.id;
+    const ownerId = req.user.id;
 
-    console.log(ownerId, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    // console.log(ownerId, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
 
     const { title, imageUrl, description, productTypeId } = req.body
 
-    const newProduct = await Product.create({ title, imageUrl, description});
+    const newProduct = await Product.create({ ownerId, title, imageUrl, description, productTypeId: +productTypeId});
 
-
+    // console.log(newProduct, "------------------------------------------------------")
 
     res.json(newProduct)
 }))
 
-router.patch('/:productId/edit', restoreUser, asyncHandler( async (req, res) => {
+router.put('/:productId/edit', restoreUser, asyncHandler( async (req, res) => {
 
-    const productId = req.params.productId
-    const ownerId = req.user.id;
+    // const productId = req.params.productId
+    // const ownerId = req.user.id;
+
 
     const { title, imageUrl, description, productTypeId } = req.body
 
-    const newProduct = await Product.findByPk(productId);
+    const newProduct = await Product.findByPk(1);
+
+
+
     await newProduct.update({ title, imageUrl, description, productTypeId });
 
 
@@ -59,8 +63,7 @@ router.patch('/:productId/edit', restoreUser, asyncHandler( async (req, res) => 
 }))
 
 router.delete('/:productId', restoreUser, asyncHandler(async (req, res) => {
-    const productId = req.params.productId
-    const ownerId = req.user.id;
+
 
     // const singleProduct = await Product.findByPk(productId)
     const singleProduct = await Product.findByPk({where: { productId }});

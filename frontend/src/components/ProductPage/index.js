@@ -10,15 +10,15 @@ function ProductPage() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const { productId } = useParams();
+    // const { productId } = useParams();
 
     // console.log('teeeeeeeeeeeeeeeeeeeeeeest', history);
 
     // const product = useSelector(state => state?.product?.product)
     
     
-    const product = useSelector(state => {
-        return state.product;
+    const productList = useSelector(state => {
+        return state.product.list;
     });
     
     useEffect(() => {
@@ -29,19 +29,18 @@ function ProductPage() {
     //     dispatch();
     // }, [dispatch]);
 
-    console.log('test------------------------2-', product)
-    console.log('teeeeeeeeeest -----------------------3', product.list)
+    // console.log('problem------------------------2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-', product)
+    // console.log('teeeeeeeeeest -----------------------3', product.list)
 
-    let test = product.list
 
-    if (!product.list) {
+    if (!productList) {
         return null;
     } else {
     return (
         <>
             <div className = 'fullproductpage'>
             {/* <div>{product[1].title}</div> */}
-            {test.map((product => (
+            {productList.map((product => (
             <div key={product.id} className= 'products'>
                 <div className = 'fullproductleft'>
                 <img src={product.imageUrl} className= 'images' alt=''/>

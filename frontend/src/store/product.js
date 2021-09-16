@@ -14,19 +14,26 @@ const load = list => ({
 });
 
 
-const newProductAction = (product) => {
+const newProductAction = (addedProduct) => {
     return {
         type: ADD_PRODUCT,
-        product
+        addedProduct
     };
 };
 
-const editProductAction = (product) => {
+const editProductAction = (editedProduct) => {
     return {
         type: EDIT_PRODUCT,
-        product
+        editedProduct
     };
 };
+
+const deleteProductAction = (deleteProduct) => {
+    return {
+        type: DELETE_PRODUCT,
+        deleteProduct
+    }
+}
 // const getAllProductAction = product => ({
 //         type: GET_ALLPRODUCT,
 //         product
@@ -57,20 +64,39 @@ export const getAllProduct = () => async (dispatch) => {
     }
 };
 
-export const addProduct = ({ title, imageUrl, description }) => async (dispatch) => {
+export const addProduct = ({ title, imageUrl, description, productTypeId }) => async (dispatch) => {
     const response = await csrfFetch(`/api/products/new`, {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ title, imageUrl, description })
+        // headers: {
+        //     "Content-Type": "application/json"
+        // },
+        body: JSON.stringify({ title, imageUrl, description, productTypeId })
     });
 
     const addedProduct = await response.json();
 
+    // console.log(addedProduct, '2222222222222222222222222222222222222222222222222222222222222222')
+
     dispatch(newProductAction(addedProduct));
     return addedProduct;
 }
+
+export const editProduct = (editedProduct) => async (dispatch) => {
+    // const { id } = editedProduct;
+    // const response = await csrfFetch(`/api/products/${parseInt(id)}`, {
+    const response = await csrfFetch(`/api/products/2/edit`, {
+
+        method: 'PUT',
+        // headers: {
+        //     'Content-Type': 'application/json'
+        // },
+        body: JSON.stringify(editProduct)
+    });
+
+    const editedItem = await response.json();
+    dispatch(editProductAction(editedItem));
+    return editedItem;
+};
 
 // const addProduct = ({ title, imageUrl, description, productTypeId }) => async (dispatch) => {
 //     const response = await csrfFetch(`/api/product/new`, {
@@ -78,19 +104,19 @@ export const addProduct = ({ title, imageUrl, description }) => async (dispatch)
 //     body: JSON.stringify({title, imageUrl, description, productTypeId })
 //     }
 
-export const editProduct = (productId, product) => async (dispatch) => {
-    const response = await csrfFetch(`/api/products/${productId}`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(product)
-    });
-    const edittedProduct = await response.json();
+// export const editProduct = (productId, product) => async (dispatch) => {
+//     const response = await csrfFetch(`/api/products/${productId}`, {
+//         method: "PATCH",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(product)
+//     });
+//     const edittedProduct = await response.json();
     
-    dispatch(editProductAction(edittedProduct));
-    return edittedProduct;
-}
+//     dispatch(editProductAction(edittedProduct));
+//     return edittedProduct;
+// }
 
 // export const getAllProduce = (state) => Object.values(state.produce);
 
@@ -134,17 +160,18 @@ const sortList = (list) => {
 // };
 
 const productReducer = (state=initialState, action) => {
-    let newState;
+    let newState, newProduct;
     switch (action.type) {
         case LOAD: {
             const allProduct = {};
             action.list.forEach(product => {
                 allProduct[product.id] = product;
             });
+            // console.log(allProduct, '4444444444444444444444444444444444444444444444444444444')
             return {
-              ...allProduct,
-              ...state,
-              list: sortList(action.list),
+                ...state,
+                allProducts: { ...allProduct },
+                list: sortList(action.list),
             };
         }
         case ADD_PRODUCT:
@@ -161,13 +188,13 @@ const productReducer = (state=initialState, action) => {
 
             // }
 
-            return { ...state, entries: [...state.entries, action.product] };
+            return { ...state, list: [...state.list, action.addedProduct ]};
 
 
     //         console.log(action.product);
     //   return {
     //     ...state,
-    //     [action.product]: {
+    //     [action.list]: {
     //       ...state[action.product],
     //       product: [...state[action.product], action.product],
     //     },
@@ -178,7 +205,8 @@ const productReducer = (state=initialState, action) => {
             return newState;
         case EDIT_PRODUCT:
             newState = Object.assign({}, state);
-            newState.product = action.product;
+            newProduct = action.editedProduct;
+            newState[newProduct.id] = newProduct;
             return newState;
         case DELETE_PRODUCT:
             newState = Object.assign({}, state);
