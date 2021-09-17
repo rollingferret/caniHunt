@@ -213,7 +213,7 @@ const productReducer = (state=initialState, action) => {
             // return newState;
             return {
                 ...state,
-                [action.list.id]: action.editedProduct,
+                [action.list]: action.editedProduct,
                 // [action.product.id]: action.editedProduct,
                 // do i want to be in product or list???
               };
