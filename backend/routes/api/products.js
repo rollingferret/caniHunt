@@ -59,7 +59,7 @@ router.patch('/:productId/edit', restoreUser, asyncHandler( async (req, res) => 
     await edittedProduct.update({ title, imageUrl, description, productTypeId });
 
 
-    res.json(newProduct)
+    res.json(edittedProduct)
 }))
 
 router.delete('/:productId', restoreUser, asyncHandler(async (req, res) => {
