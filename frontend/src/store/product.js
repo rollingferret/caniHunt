@@ -89,11 +89,11 @@ export const addProduct = ({ title, imageUrl, description, productTypeId }) => a
     // const response = await csrfFetch(`/api/products/${parseInt(id)}`, {
     const response = await csrfFetch(`/api/products/2/edit`, {
 
-        method: 'PUT',
+        method: 'PATCH',
         // headers: {
         //     'Content-Type': 'application/json'
         // },
-        body: JSON.stringify({ id, title, imageUrl, description, productTypeId })
+        body: JSON.stringify({ title, imageUrl, description, productTypeId })
     });
 
     const editedItem = await response.json();
@@ -202,10 +202,10 @@ const productReducer = (state=initialState, action) => {
     //       product: [...state[action.product], action.product],
     //     },
     //   };
-        case GET_PRODUCT:
-            newState = Object.assign({}, state);
-            newState.product = action.product;
-            return newState;
+        // case GET_PRODUCT:
+        //     newState = Object.assign({}, state);
+        //     newState.product = action.product;
+        //     return newState;
         case EDIT_PRODUCT:
             // newState = Object.assign({}, state);
             // newProduct = action.editedProduct;
@@ -217,12 +217,12 @@ const productReducer = (state=initialState, action) => {
               };
 
             // return [...state, action.editedProduct];
-            // will only add to end
+            // will only add to
 
 
-        case DELETE_PRODUCT:
-            newState = Object.assign({}, state);
-            return newState;
+        // case DELETE_PRODUCT:
+        //     newState = Object.assign({}, state);
+        //     return newState;
         default:
             return state;
     };
