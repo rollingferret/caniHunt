@@ -23,6 +23,7 @@ function EditProductPage() {
       e.preventDefault();
 
       const edittedProduct = {
+          id: 2,
           title: title,
           description: description,
           imageUrl: imageUrl,
@@ -39,7 +40,7 @@ function EditProductPage() {
   
   return (
       <>
-          <form className="product-form" onSubmit={handleSubmit}>
+      <form className="edit-form" onSubmit={handleSubmit}>
     <label>
       Title
       <input

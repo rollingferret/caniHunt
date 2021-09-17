@@ -27,8 +27,8 @@ function App() {
         </Switch>
       )}
       <ProductPage />
-      <NewProductPage />
       <EditProductPage />
+      <NewProductPage />
 
     </>
   );

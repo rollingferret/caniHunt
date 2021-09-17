@@ -81,8 +81,11 @@ export const addProduct = ({ title, imageUrl, description, productTypeId }) => a
     return addedProduct;
 }
 
-export const editProduct = (editedProduct) => async (dispatch) => {
-    // const { id } = editedProduct;
+// export const editProduct = (editedProduct) => async (dispatch) => {
+    export const editProduct = ({ title, imageUrl, description, productTypeId }) => async (dispatch) => {
+
+    // const { id } = editProduct;
+    // need to grab id somehow
     // const response = await csrfFetch(`/api/products/${parseInt(id)}`, {
     const response = await csrfFetch(`/api/products/2/edit`, {
 
@@ -90,7 +93,7 @@ export const editProduct = (editedProduct) => async (dispatch) => {
         // headers: {
         //     'Content-Type': 'application/json'
         // },
-        body: JSON.stringify(editProduct)
+        body: JSON.stringify({ id, title, imageUrl, description, productTypeId })
     });
 
     const editedItem = await response.json();
@@ -204,10 +207,19 @@ const productReducer = (state=initialState, action) => {
             newState.product = action.product;
             return newState;
         case EDIT_PRODUCT:
-            newState = Object.assign({}, state);
-            newProduct = action.editedProduct;
-            newState[newProduct.id] = newProduct;
-            return newState;
+            // newState = Object.assign({}, state);
+            // newProduct = action.editedProduct;
+            // newState[newProduct.id] = newProduct;
+            // return newState;
+            return {
+                ...state,
+                [action.list.id]: action.editedProduct,
+              };
+
+            // return [...state, action.editedProduct];
+            // will only add to end
+
+
         case DELETE_PRODUCT:
             newState = Object.assign({}, state);
             return newState;

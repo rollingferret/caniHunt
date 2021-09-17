@@ -44,7 +44,7 @@ router.post('/new', restoreUser, asyncHandler( async (req, res) => {
     res.json(newProduct)
 }))
 
-router.put('/:productId/edit', restoreUser, asyncHandler( async (req, res) => {
+router.patch('/:productId/edit', restoreUser, asyncHandler( async (req, res) => {
 
     // const productId = req.params.productId
     // const ownerId = req.user.id;
@@ -52,11 +52,11 @@ router.put('/:productId/edit', restoreUser, asyncHandler( async (req, res) => {
 
     const { title, imageUrl, description, productTypeId } = req.body
 
-    const newProduct = await Product.findByPk(1);
+    const edittedProduct = await Product.findByPk(2);
 
 
 
-    await newProduct.update({ title, imageUrl, description, productTypeId });
+    await edittedProduct.update({ title, imageUrl, description, productTypeId });
 
 
     res.json(newProduct)
