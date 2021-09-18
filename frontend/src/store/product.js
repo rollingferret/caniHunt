@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const ADD_PRODUCT = 'product/ADD_PRODUCT';
 const GET_PRODUCT = 'product/GET_PRODUCT';
+const LOAD_SINGLE_PRODUCT = 'product/LOAD_SINGLE_PRODUCT';
 const GET_ALLPRODUCT = 'product/GET_ALLPRODUCT';
 const EDIT_PRODUCT = 'product/EDIT_PRODUCT';
 const DELETE_PRODUCT = 'product/DELETE_PRODUCT';
@@ -12,6 +13,13 @@ const load = list => ({
     type: LOAD,
     list,
 });
+
+const singleProductLoad = (singleProduct) => {
+    return {
+        type: LOAD_SINGLE_PRODUCT,
+        singleProduct
+    };
+};
 
 
 const newProductAction = (addedProduct) => {
@@ -61,6 +69,23 @@ export const getAllProduct = () => async (dispatch) => {
     if (response.ok) {
         const list = await response.json();
         dispatch(load(list));
+        return list;
+    }
+};
+
+export const getSingleProduct = () => async (dispatch) => {
+    // const response = await csrfFetch(`/api/products/${productId}`);
+    // const response = await csrfFetch(`/api/products/`);
+    // const product = await response.json();
+    // dispatch(getAllProductAction(product));
+    // return product
+
+    const response = await fetch(`/api/products/10`);
+    
+    if (response.ok) {
+        const singleProduct = await response.json();
+        dispatch(singleProductLoad(singleProduct));
+        return singleProduct;
     }
 };
 
@@ -82,7 +107,7 @@ export const addProduct = ({ title, imageUrl, description, productTypeId }) => a
 }
 
 // export const editProduct = (editedProduct) => async (dispatch) => {
-    export const editProduct = ({ title, imageUrl, description, productTypeId }) => async (dispatch) => {
+    export const editProduct = ({ id, title, imageUrl, description, productTypeId }) => async (dispatch) => {
 
     // const { id } = editProduct;
     // need to grab id somehow
@@ -99,6 +124,25 @@ export const addProduct = ({ title, imageUrl, description, productTypeId }) => a
     const editedItem = await response.json();
     dispatch(editProductAction(editedItem));
     return editedItem;
+};
+
+export const deleteProduct = ({ id }) => async (dispatch) => {
+
+    // const { id } = editProduct;
+    // need to grab id somehow
+    // const response = await csrfFetch(`/api/products/${parseInt(id)}`, {
+    const response = await csrfFetch(`/api/products/2/delete`, {
+
+        method: 'DELETE',
+        // headers: {
+        //     'Content-Type': 'application/json'
+        // },
+        body: JSON.stringify({ id })
+    });
+
+    const deletedItem = await response.json();
+    dispatch(deleteProductAction(deletedItem));
+    return deletedItem;
 };
 
 // const addProduct = ({ title, imageUrl, description, productTypeId }) => async (dispatch) => {
@@ -177,6 +221,17 @@ const productReducer = (state=initialState, action) => {
                 list: sortList(action.list),
             };
         }
+        case LOAD_SINGLE_PRODUCT: {
+            // console.log(allProduct, '4444444444444444444444444444444444444444444444444444444')
+            return {
+                ...state,
+                singleProduct: [ action.singleProduct ],
+            };
+
+            // newState = Object.assign({}, state);
+            // newState.singleProduct = action.singleProduct;
+            // return newState;
+        }
         case ADD_PRODUCT:
             // newState = Object.assign({}, state);
             // newState.product = action.product;
@@ -202,29 +257,33 @@ const productReducer = (state=initialState, action) => {
     //       product: [...state[action.product], action.product],
     //     },
     //   };
-        // case GET_PRODUCT:
-        //     newState = Object.assign({}, state);
-        //     newState.product = action.product;
-        //     return newState;
+        case GET_PRODUCT:
+            newState = Object.assign({}, state);
+            newState.product = action.product;
+            return newState;
         case EDIT_PRODUCT:
-            // newState = Object.assign({}, state);
-            // newProduct = action.editedProduct;
-            // newState[newProduct.id] = newProduct;
-            // return newState;
-            return {
-                ...state,
-                [action.list]: action.editedProduct,
-                // [action.product.id]: action.editedProduct,
-                // do i want to be in product or list???
-              };
-            //WHERE IS THIS ID COMINNG FROM?
+            newState = Object.assign({}, state);
+            newProduct = action.editedProduct;
+            newState[newProduct.id] = newProduct;
+            // // return newState;
+            // return {
+            //     ...state,
+            //     [action.list.id]: action.editedProduct,
+            //   };
+
             // return [...state, action.editedProduct];
-            // will only add to
+            // will only add tgo
 
 
-        // case DELETE_PRODUCT:
-        //     newState = Object.assign({}, state);
-        //     return newState;
+        case DELETE_PRODUCT:
+
+            newState = { ...state };
+            delete newState[action.deleteProduct.id];
+            return newState;
+
+            // newState = Object.assign({}, state);
+            // return newState;
+
         default:
             return state;
     };

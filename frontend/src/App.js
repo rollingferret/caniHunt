@@ -8,6 +8,9 @@ import Navigation from "./components/Navigation";
 import ProductPage from './components/ProductPage';
 import NewProductPage from './components/NewProductPage';
 import EditProductPage from './components/EditProductPage';
+import SingleProductPage from './components/SingleProductPage';
+import DeleteProductPage from './components/DeleteProductPage';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +32,9 @@ function App() {
       <ProductPage />
       <EditProductPage />
       <NewProductPage />
+      <SingleProductPage />
+      <DeleteProductPage />
+
 
     </>
   );

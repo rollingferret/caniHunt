@@ -35,7 +35,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        ownerId: '1',
+        ownerId: '4',
         title: 'test',
         imageUrl: 'test',
         description: 'test',
@@ -44,7 +44,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        ownerId: '1',
+        ownerId: '5',
         title: 'test',
         imageUrl: 'test',
         description: 'test',

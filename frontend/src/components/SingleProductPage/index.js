@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { getAllProduct } from '../../store/product';
-import './fullproductpage.css'
+import { getSingleProduct } from '../../store/product';
+import './singleproductpage.css'
 
 
-function ProductPage() {
+function SingleProductPage() {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -17,30 +17,32 @@ function ProductPage() {
     // const product = useSelector(state => state?.product?.product)
     
     
-    const productList = useSelector(state => {
-        return state.product.list;
+    const singleProduct = useSelector(state => {
+        return state.product.singleProduct;
     });
     
     useEffect(() => {
-        dispatch(getAllProduct())
+        dispatch(getSingleProduct())
     },[dispatch])
     
     // useEffect(() => {
     //     dispatch();
     // }, [dispatch]);
 
-    // console.log(productList)
+    console.log('problem------------------------2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-', singleProduct)
     // console.log('teeeeeeeeeest -----------------------3', product.list)
+        console.log( singleProduct )
 
 
-    if (!productList) {
+
+    if (!singleProduct) {
         return null;
     } else {
     return (
         <>
             <div className = 'fullproductpage'>
             {/* <div>{product[1].title}</div> */}
-            {productList.map((product => (
+            {singleProduct.map((product => (
             <div key={product.id} className= 'products'>
                 <div className = 'fullproductleft'>
                 <img src={product.imageUrl} className= 'images' alt=''/>
@@ -54,9 +56,10 @@ function ProductPage() {
             </div>
             )))}
             </div>
+
         </>
     );
     }
 };
 
-export default ProductPage;
+export default SingleProductPage;
