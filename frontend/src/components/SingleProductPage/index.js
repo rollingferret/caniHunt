@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { editProduct, getAllProduct, getSingleProduct } from '../../store/product';
+import { getSingleProduct } from '../../store/product';
 import './singleproductpage.css'
 
 
@@ -17,8 +17,8 @@ function SingleProductPage() {
     // const product = useSelector(state => state?.product?.product)
     
     
-    const productList = useSelector(state => {
-        return state.product.SingleProductPage;
+    const singleProduct = useSelector(state => {
+        return state.product.singleProduct;
     });
     
     useEffect(() => {
@@ -29,18 +29,20 @@ function SingleProductPage() {
     //     dispatch();
     // }, [dispatch]);
 
-    // console.log('problem------------------------2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-', product)
+    console.log('problem------------------------2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-', singleProduct)
     // console.log('teeeeeeeeeest -----------------------3', product.list)
+        console.log( singleProduct )
 
 
-    if (!productList) {
+
+    if (!singleProduct) {
         return null;
     } else {
     return (
         <>
-            <div className = 'singleProductPage'>
+            <div className = 'fullproductpage'>
             {/* <div>{product[1].title}</div> */}
-            {productList.map((product => (
+            {singleProduct.map((product => (
             <div key={product.id} className= 'products'>
                 <div className = 'fullproductleft'>
                 <img src={product.imageUrl} className= 'images' alt=''/>
@@ -54,6 +56,7 @@ function SingleProductPage() {
             </div>
             )))}
             </div>
+
         </>
     );
     }

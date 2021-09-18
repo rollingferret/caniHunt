@@ -52,7 +52,7 @@ router.patch('/:productId/edit', restoreUser, asyncHandler( async (req, res) => 
 
     const { title, imageUrl, description, productTypeId } = req.body
 
-    const edittedProduct = await Product.findByPk(2);
+    const edittedProduct = await Product.findByPk(4);
 
 
 
@@ -62,20 +62,22 @@ router.patch('/:productId/edit', restoreUser, asyncHandler( async (req, res) => 
     res.json(edittedProduct)
 }))
 
-router.delete('/:productId', restoreUser, asyncHandler(async (req, res) => {
+router.delete('/:productId/delete', restoreUser, asyncHandler(async (req, res) => {
 
 
     // const singleProduct = await Product.findByPk(productId)
-    const singleProduct = await Product.findByPk({where: { productId }});
+    // const singleProduct = await Product.findByPk({where: { productId }});
+    const singleProduct = await Product.findByPk(4);
+
 
     await singleProduct.destroy();
 
-    const products = await Product.findAll({
+    // const products = await Product.findAll({
 
-    });
+    // });
 
 
-    res.json(products)
+    res.json(singleProduct)
 }));
 
 module.exports = router;

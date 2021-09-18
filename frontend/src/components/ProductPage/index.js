@@ -29,7 +29,7 @@ function ProductPage() {
     //     dispatch();
     // }, [dispatch]);
 
-    // console.log('problem------------------------2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-', product)
+    // console.log(productList)
     // console.log('teeeeeeeeeest -----------------------3', product.list)
 
 
