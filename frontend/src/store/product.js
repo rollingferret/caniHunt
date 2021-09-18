@@ -82,7 +82,7 @@ export const addProduct = ({ title, imageUrl, description, productTypeId }) => a
 }
 
 // export const editProduct = (editedProduct) => async (dispatch) => {
-    export const editProduct = ({ title, imageUrl, description, productTypeId }) => async (dispatch) => {
+    export const editProduct = ({ id, title, imageUrl, description, productTypeId }) => async (dispatch) => {
 
     // const { id } = editProduct;
     // need to grab id somehow
@@ -202,29 +202,27 @@ const productReducer = (state=initialState, action) => {
     //       product: [...state[action.product], action.product],
     //     },
     //   };
-        // case GET_PRODUCT:
-        //     newState = Object.assign({}, state);
-        //     newState.product = action.product;
-        //     return newState;
+        case GET_PRODUCT:
+            newState = Object.assign({}, state);
+            newState.product = action.product;
+            return newState;
         case EDIT_PRODUCT:
-            // newState = Object.assign({}, state);
-            // newProduct = action.editedProduct;
-            // newState[newProduct.id] = newProduct;
-            // return newState;
-            return {
-                ...state,
-                [action.list]: action.editedProduct,
-                // [action.product.id]: action.editedProduct,
-                // do i want to be in product or list???
-              };
-            //WHERE IS THIS ID COMINNG FROM?
+            newState = Object.assign({}, state);
+            newProduct = action.editedProduct;
+            newState[newProduct.id] = newProduct;
+            // // return newState;
+            // return {
+            //     ...state,
+            //     [action.list.id]: action.editedProduct,
+            //   };
+
             // return [...state, action.editedProduct];
-            // will only add to
+            // will only add tgo
 
 
-        // case DELETE_PRODUCT:
-        //     newState = Object.assign({}, state);
-        //     return newState;
+        case DELETE_PRODUCT:
+            newState = Object.assign({}, state);
+            return newState;
         default:
             return state;
     };
