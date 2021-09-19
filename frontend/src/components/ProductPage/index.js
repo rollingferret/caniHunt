@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { getAllProduct } from '../../store/product';
 import './fullproductpage.css'
-
+import { NavLink } from 'react-router-dom';
 
 function ProductPage() {
 
@@ -41,7 +41,7 @@ function ProductPage() {
             <div className = 'fullproductpage'>
             {/* <div>{product[1].title}</div> */}
             {productList.map((product => (
-            <div key={product.id} className= 'products'>
+            <NavLink to = {`/products/${product.id}`} key={product.id} className= 'products'>
                 <div className = 'fullproductleft'>
                 <img src={product.imageUrl} className= 'images' alt=''/>
                 <div className='fullproductdescription'>
@@ -51,7 +51,7 @@ function ProductPage() {
                 </div>
             </div>
             <div className='fullproductright'></div>
-            </div>
+            </NavLink>
             )))}
             </div>
         </>

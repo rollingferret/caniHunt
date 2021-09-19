@@ -19,10 +19,10 @@ router.get('/', restoreUser, asyncHandler( async (req, res) => {
 }))
 
 router.get('/:productId', restoreUser, asyncHandler( async (req, res) => {
-    const productId = req.params.productId
-    // console.log('-----------------------------', req.params.productId)
-    // console.log('-----------------------------2', productId)
 
+    // console.log('9999999999999999999999999999999', req.params)
+    let { productId } = req.params
+    // console.log(productId)
     const singleProduct = await Product.findByPk(productId)
 
     res.json(singleProduct)

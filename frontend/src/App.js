@@ -24,18 +24,29 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/">
+            <ProductPage />
+          </Route>
+          <Route exact path="/products/:productId">
+            <SingleProductPage isLoaded={isLoaded}/>
+          </Route>
+          <Route exact path="/products/:productId/edit">
+            <EditProductPage />
+          </Route>
+          <Route exact path="/products/:productId/delete">
+            <DeleteProductPage />
+          </Route>
+          <Route exact path="/products/new">
+            <NewProductPage />
+          </Route>
+          <Route path='/'>
+            The page you are looking for is not found.
           </Route>
         </Switch>
       )}
-      <ProductPage />
-      <EditProductPage />
-      <NewProductPage />
-      <SingleProductPage />
-      <DeleteProductPage />
-
-
     </>
   );
 }

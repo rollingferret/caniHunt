@@ -73,14 +73,14 @@ export const getAllProduct = () => async (dispatch) => {
     }
 };
 
-export const getSingleProduct = () => async (dispatch) => {
+export const getSingleProduct = (productId) => async (dispatch) => {
     // const response = await csrfFetch(`/api/products/${productId}`);
     // const response = await csrfFetch(`/api/products/`);
     // const product = await response.json();
     // dispatch(getAllProductAction(product));
     // return product
 
-    const response = await fetch(`/api/products/10`);
+    const response = await fetch(`/api/products/${productId}`);
     
     if (response.ok) {
         const singleProduct = await response.json();
@@ -192,7 +192,7 @@ const initialState = {};
 // };
 const sortList = (list) => {
     return list.sort((productA, productB) => {
-      return productA.id - productB.id;
+      return productB.id - productA.id;
     }).map((product) => product);
   };
 
