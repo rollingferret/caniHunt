@@ -112,7 +112,7 @@ export const addProduct = ({ title, imageUrl, description, productTypeId }) => a
     // const { id } = editProduct;
     // need to grab id somehow
     // const response = await csrfFetch(`/api/products/${parseInt(id)}`, {
-    const response = await csrfFetch(`/api/products/2/edit`, {
+    const response = await csrfFetch(`/api/products/${id}/edit`, {
 
         method: 'PATCH',
         // headers: {
@@ -258,9 +258,9 @@ const productReducer = (state=initialState, action) => {
     //     },
     //   };
         case GET_PRODUCT:
-            newState = Object.assign({}, state);
-            newState.product = action.product;
-            return newState;
+            // newState = Object.assign({}, state);
+            // newState.product = action.product;
+            // return newState;
         case EDIT_PRODUCT:
             newState = Object.assign({}, state);
             newProduct = action.editedProduct;
@@ -277,9 +277,9 @@ const productReducer = (state=initialState, action) => {
 
         case DELETE_PRODUCT:
 
-            newState = { ...state };
-            delete newState[action.deleteProduct.id];
-            return newState;
+            // newState = { ...state };
+            // delete newState[action.deleteProduct.id];
+            // return newState;
 
             // newState = Object.assign({}, state);
             // return newState;

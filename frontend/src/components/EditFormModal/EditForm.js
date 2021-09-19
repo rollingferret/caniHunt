@@ -18,12 +18,27 @@ function EditForm() {
   const [productTypeId, setProductTypeId] = useState('');
   const [errors, setErrors] = useState([]);
 
+    // console.log('teeeeeeeeeeeeeeeeeeeeeeest', history);
+    // console.log('teeeeeeeeeeeeeeeeeeeeeeest', history.location);
+
+    const {pathname} = history.location
+    // console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', pathname)
+    // console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', pathname.split("/")[2])
+
+    const singleProductId = pathname.split("/")[2]
+
+    console.log(singleProductId, '99999999999999999999999999999999999999999')
+
+
+  function reloadPage(){ 
+      window.location.reload(); 
+  }
 
   const handleSubmit = (e) => {
       e.preventDefault();
 
       const edittedProduct = {
-          id: 2,
+          id: singleProductId,
           title: title,
           description: description,
           imageUrl: imageUrl,
@@ -34,7 +49,8 @@ function EditForm() {
 
 
       dispatch(editProduct(edittedProduct));
-      history.push(`/`);
+      history.push(pathname);
+      reloadPage()
       // history.push(`/users/${userId}/`);
       }
   

@@ -48,11 +48,12 @@ router.patch('/:productId/edit', restoreUser, asyncHandler( async (req, res) => 
 
     // const productId = req.params.productId
     // const ownerId = req.user.id;
-
+    let { productId } = req.params
+    console.log(productId)
 
     const { title, imageUrl, description, productTypeId } = req.body
 
-    const edittedProduct = await Product.findByPk(4);
+    const edittedProduct = await Product.findByPk(productId);
 
 
 
