@@ -5,14 +5,27 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
+import NewProductFormModal from '../PostNewProductModal';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
-  let sessionLinks;
+  let sessionLinks, sessionMiddleLinks;
   if (sessionUser) {
     sessionLinks = (
       <ProfileButton user={sessionUser} />
+    );
+    sessionMiddleLinks = (
+  <>
+  <div className = 'homeButton' >
+    <NavLink exact to="/myproducts">
+      <i className="fas fa-home">myProducts</i>
+    </NavLink>
+  </div>
+  <div className = 'homeButton' >
+    <NewProductFormModal />
+  </div>
+  </>
     );
   } else {
     sessionLinks = (
@@ -21,6 +34,10 @@ function Navigation({ isLoaded }){
         <NavLink to="/signup">Sign Up</NavLink>
       </>
     );
+    sessionMiddleLinks = (
+      <>
+      </>
+      );
   }
 
   return (
@@ -30,6 +47,9 @@ function Navigation({ isLoaded }){
         <NavLink exact to="/">
           <i className="fas fa-home">Home</i>
         </NavLink>
+      </div>
+      <div className = 'navmiddlestuff' >
+        {isLoaded && sessionMiddleLinks}
       </div>
       <div className = 'logStuff' >
         {isLoaded && sessionLinks}

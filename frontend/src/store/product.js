@@ -73,14 +73,30 @@ export const getAllProduct = () => async (dispatch) => {
     }
 };
 
-export const getSingleProduct = () => async (dispatch) => {
+export const getmyAllProduct = () => async (dispatch) => {
     // const response = await csrfFetch(`/api/products/${productId}`);
     // const response = await csrfFetch(`/api/products/`);
     // const product = await response.json();
     // dispatch(getAllProductAction(product));
     // return product
 
-    const response = await fetch(`/api/products/10`);
+    const response = await fetch(`/api/products/myproducts`);
+    
+    if (response.ok) {
+        const list = await response.json();
+        dispatch(load(list));
+        return list;
+    }
+};
+
+export const getSingleProduct = (productId) => async (dispatch) => {
+    // const response = await csrfFetch(`/api/products/${productId}`);
+    // const response = await csrfFetch(`/api/products/`);
+    // const product = await response.json();
+    // dispatch(getAllProductAction(product));
+    // return product
+
+    const response = await fetch(`/api/products/${productId}`);
     
     if (response.ok) {
         const singleProduct = await response.json();
@@ -112,7 +128,7 @@ export const addProduct = ({ title, imageUrl, description, productTypeId }) => a
     // const { id } = editProduct;
     // need to grab id somehow
     // const response = await csrfFetch(`/api/products/${parseInt(id)}`, {
-    const response = await csrfFetch(`/api/products/2/edit`, {
+    const response = await csrfFetch(`/api/products/${id}/edit`, {
 
         method: 'PATCH',
         // headers: {
@@ -131,7 +147,7 @@ export const deleteProduct = ({ id }) => async (dispatch) => {
     // const { id } = editProduct;
     // need to grab id somehow
     // const response = await csrfFetch(`/api/products/${parseInt(id)}`, {
-    const response = await csrfFetch(`/api/products/2/delete`, {
+    const response = await csrfFetch(`/api/products/${id}/delete`, {
 
         method: 'DELETE',
         // headers: {
@@ -192,7 +208,7 @@ const initialState = {};
 // };
 const sortList = (list) => {
     return list.sort((productA, productB) => {
-      return productA.id - productB.id;
+      return productB.id - productA.id;
     }).map((product) => product);
   };
 
@@ -265,7 +281,7 @@ const productReducer = (state=initialState, action) => {
             newState = Object.assign({}, state);
             newProduct = action.editedProduct;
             newState[newProduct.id] = newProduct;
-            // // return newState;
+            return newState;
             // return {
             //     ...state,
             //     [action.list.id]: action.editedProduct,
@@ -277,6 +293,9 @@ const productReducer = (state=initialState, action) => {
 
         case DELETE_PRODUCT:
 
+            // newState = Object.assign({}, state);
+            // deleteProduct = action.deleteProduct;
+            // newState[deleteProduct.id] = deleteProduct;
             newState = { ...state };
             delete newState[action.deleteProduct.id];
             return newState;

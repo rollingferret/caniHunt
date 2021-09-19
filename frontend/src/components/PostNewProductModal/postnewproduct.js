@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { addProduct } from '../../store/product';
-import './newproduct.css'
 
-function NewProductPage() {
+
+
+function NewProductForm() {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -18,6 +20,10 @@ function NewProductPage() {
     const [productTypeId, setProductTypeId] = useState('');
     const [errors, setErrors] = useState([]);
 
+
+    function reloadPage(){ 
+        window.location.reload(); 
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -34,6 +40,7 @@ function NewProductPage() {
 
         dispatch(addProduct(newProduct));
         history.push(`/myproducts`);
+        reloadPage()
         // history.push(`/users/${userId}/`);
         }
     
@@ -87,4 +94,4 @@ function NewProductPage() {
     );
 }
 
-export default NewProductPage;
+export default NewProductForm;
