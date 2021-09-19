@@ -28,7 +28,11 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/">
+           <NewProductPage />
             <ProductPage />
+          </Route>
+          <Route exact path="/products/new">
+            <NewProductPage />
           </Route>
           <Route exact path="/products/:productId">
             <SingleProductPage isLoaded={isLoaded}/>
@@ -38,9 +42,6 @@ function App() {
           </Route>
           <Route exact path="/products/:productId/delete">
             <DeleteProductPage />
-          </Route>
-          <Route exact path="/products/new">
-            <NewProductPage />
           </Route>
           <Route path='/'>
             The page you are looking for is not found.
