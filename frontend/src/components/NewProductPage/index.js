@@ -33,7 +33,7 @@ function NewProductPage() {
 
 
         dispatch(addProduct(newProduct));
-        history.push(`/`);
+        history.push(`/myproducts`);
         // history.push(`/users/${userId}/`);
         }
     

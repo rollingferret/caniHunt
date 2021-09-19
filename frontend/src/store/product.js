@@ -73,6 +73,22 @@ export const getAllProduct = () => async (dispatch) => {
     }
 };
 
+export const getmyAllProduct = () => async (dispatch) => {
+    // const response = await csrfFetch(`/api/products/${productId}`);
+    // const response = await csrfFetch(`/api/products/`);
+    // const product = await response.json();
+    // dispatch(getAllProductAction(product));
+    // return product
+
+    const response = await fetch(`/api/products/myproducts`);
+    
+    if (response.ok) {
+        const list = await response.json();
+        dispatch(load(list));
+        return list;
+    }
+};
+
 export const getSingleProduct = (productId) => async (dispatch) => {
     // const response = await csrfFetch(`/api/products/${productId}`);
     // const response = await csrfFetch(`/api/products/`);

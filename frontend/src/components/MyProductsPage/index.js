@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { getAllProduct } from '../../store/product';
+import { getAllProduct, getmyAllProduct } from '../../store/product';
 import './myproductspage.css'
 import { NavLink } from 'react-router-dom';
+import EditFormModal from '../EditFormModal';
+import DeleteButtonModal from '../DeleteProductModal';
 
 function MyProductsPage() {
 
@@ -22,7 +24,7 @@ function MyProductsPage() {
     });
     
     useEffect(() => {
-        dispatch(getAllProduct())
+        dispatch(getmyAllProduct())
     },[dispatch])
     
     // useEffect(() => {
@@ -41,7 +43,8 @@ function MyProductsPage() {
             <div className = 'fullproductpage'>
             {/* <div>{product[1].title}</div> */}
             {productList.map((product => (
-            <NavLink to = {`/products/${product.id}`} key={product.id} className= 'products'>
+                <>
+            <NavLink to = {`/products/${product.id}`} key={`myproduct_${product.id}`} className= 'products'>
                 <div className = 'fullproductleft'>
                 <img src={product.imageUrl?product.imageUrl:'https://cdn.iconscout.com/icon/premium/png-256-thumb/no-image-1765819-1505608.png'} className= 'images' alt=''/>
                 <div className='fullproductdescription'>
@@ -50,8 +53,12 @@ function MyProductsPage() {
                 <div className='fullproductbottom'>num reviews</div>
                 </div>
             </div>
-            <div className='fullproductright'></div>
             </NavLink>
+            <div className='fullproductright'>              
+            <EditFormModal productId={product.id}/>
+            <DeleteButtonModal />
+            </div>
+                </>
             )))}
             </div>
         </>

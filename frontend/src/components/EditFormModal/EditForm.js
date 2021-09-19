@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { editProduct } from '../../store/product';
 
-function EditForm() {
+function EditForm(props) {
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -21,11 +21,13 @@ function EditForm() {
     // console.log('teeeeeeeeeeeeeeeeeeeeeeest', history);
     // console.log('teeeeeeeeeeeeeeeeeeeeeeest', history.location);
 
+    // console.log(props.productId, '----------------------------------------------------------')
+
     const {pathname} = history.location
     // console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', pathname)
     // console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', pathname.split("/")[2])
 
-    const singleProductId = pathname.split("/")[2]
+    // const singleProductId = pathname.split("/")[2]
 
     // console.log(singleProductId, '99999999999999999999999999999999999999999')
 
@@ -38,7 +40,7 @@ function EditForm() {
       e.preventDefault();
 
       const edittedProduct = {
-          id: singleProductId,
+          id: props.productId,
           title: title,
           description: description,
           imageUrl: imageUrl,

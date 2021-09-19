@@ -10,6 +10,7 @@ import NewProductPage from './components/NewProductPage';
 import EditProductPage from './components/EditProductPage';
 import SingleProductPage from './components/SingleProductPage';
 import DeleteProductPage from './components/DeleteProductPage';
+import MyProductsPage from './components/MyProductsPage';
 
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/products/new">
             <NewProductPage />
+          </Route>
+          <Route exact path="/myproducts">
+            <MyProductsPage />
           </Route>
           <Route exact path="/products/:productId">
             <SingleProductPage isLoaded={isLoaded}/>

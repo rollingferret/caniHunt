@@ -18,6 +18,19 @@ router.get('/', restoreUser, asyncHandler( async (req, res) => {
     res.json(products)
 }))
 
+router.get('/myproducts', restoreUser, asyncHandler( async (req, res) => {
+    const ownerId = req.user.id;
+
+    const products = await Product.findAll({
+
+        where: {
+            ownerId: ownerId,
+        }
+    })
+
+    res.json(products)
+}))
+
 router.get('/:productId', restoreUser, asyncHandler( async (req, res) => {
 
     // console.log('9999999999999999999999999999999', req.params)
