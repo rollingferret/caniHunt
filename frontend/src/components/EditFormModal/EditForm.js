@@ -27,7 +27,7 @@ function EditForm(props) {
     // console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', pathname)
     // console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', pathname.split("/")[2])
 
-    // const singleProductId = pathname.split("/")[2]
+    const singleProductId = pathname.split("/")[2]
 
     // console.log(singleProductId, '99999999999999999999999999999999999999999')
 
@@ -40,7 +40,7 @@ function EditForm(props) {
       e.preventDefault();
 
       const edittedProduct = {
-          id: props.productId,
+          id: props.productId?props.productId:singleProductId,
           title: title,
           description: description,
           imageUrl: imageUrl,

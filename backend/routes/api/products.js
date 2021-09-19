@@ -18,7 +18,7 @@ router.get('/', restoreUser, asyncHandler( async (req, res) => {
     res.json(products)
 }))
 
-router.get('/myproducts', restoreUser, asyncHandler( async (req, res) => {
+router.get('/myproducts', restoreUser, requireAuth, asyncHandler( async (req, res) => {
     const ownerId = req.user.id;
 
     const products = await Product.findAll({
@@ -41,7 +41,7 @@ router.get('/:productId', restoreUser, asyncHandler( async (req, res) => {
     res.json(singleProduct)
 }))
 
-router.post('/new', restoreUser, asyncHandler( async (req, res) => {
+router.post('/new', requireAuth, restoreUser, asyncHandler( async (req, res) => {
 
     const ownerId = req.user.id;
 
@@ -57,7 +57,7 @@ router.post('/new', restoreUser, asyncHandler( async (req, res) => {
     res.json(newProduct)
 }))
 
-router.patch('/:productId/edit', restoreUser, asyncHandler( async (req, res) => {
+router.patch('/:productId/edit', requireAuth, restoreUser, asyncHandler( async (req, res) => {
 
     // const productId = req.params.productId
     // const ownerId = req.user.id;
@@ -76,7 +76,7 @@ router.patch('/:productId/edit', restoreUser, asyncHandler( async (req, res) => 
     res.json(edittedProduct)
 }))
 
-router.delete('/:productId/delete', restoreUser, asyncHandler(async (req, res) => {
+router.delete('/:productId/delete', requireAuth, restoreUser, asyncHandler(async (req, res) => {
 
     let { productId } = req.params
     console.log(productId, '9999999999999999999999999999999999999999')

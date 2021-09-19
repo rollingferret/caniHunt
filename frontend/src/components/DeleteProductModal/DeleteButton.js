@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { deleteProduct  } from '../../store/product';
 
-function DeleteButtonModal() {
+function DeleteButtonModal(props) {
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -24,14 +24,14 @@ function DeleteButtonModal() {
     //   console.log('You clicked submit.');
 
       const deletedProduct = {
-          id: singleProductId
+          id: singleProductId?singleProductId:props.productId,
       };
 
       // const newItem = await dispatch(addProduct(newProduct));
 
 
       dispatch(deleteProduct(deletedProduct));
-      history.push(`/`);
+      history.push(`/myproducts`);
       // history.push(`/users/${userId}/`);
       }
   

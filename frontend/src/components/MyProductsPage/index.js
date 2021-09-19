@@ -56,7 +56,7 @@ function MyProductsPage() {
             </NavLink>
             <div className='fullproductright'>              
             <EditFormModal productId={product.id}/>
-            <DeleteButtonModal />
+            <DeleteButtonModal productId={product.id}/>
             </div>
                 </>
             )))}
