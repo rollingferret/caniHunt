@@ -258,14 +258,14 @@ const productReducer = (state=initialState, action) => {
     //     },
     //   };
         case GET_PRODUCT:
-            // newState = Object.assign({}, state);
-            // newState.product = action.product;
-            // return newState;
+            newState = Object.assign({}, state);
+            newState.product = action.product;
+            return newState;
         case EDIT_PRODUCT:
             newState = Object.assign({}, state);
             newProduct = action.editedProduct;
             newState[newProduct.id] = newProduct;
-            // // return newState;
+            return newState;
             // return {
             //     ...state,
             //     [action.list.id]: action.editedProduct,

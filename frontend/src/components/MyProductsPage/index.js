@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { getAllProduct } from '../../store/product';
-import './fullproductpage.css'
+import './myproductspage.css'
 import { NavLink } from 'react-router-dom';
 
-function ProductPage() {
+function MyProductsPage() {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -59,4 +59,4 @@ function ProductPage() {
     }
 };
 
-export default ProductPage;
+export default MyProductsPage;

@@ -77,7 +77,7 @@ function SingleProductPage({ isLoaded }) {
             {singleProduct.map((product => (
             <div key={product.id} className= 'products'>
                 <div className = 'fullproductleft'>
-                <img src={product.imageUrl} className= 'images' alt=''/>
+                <img src={product.imageUrl?product.imageUrl:'https://cdn.iconscout.com/icon/premium/png-256-thumb/no-image-1765819-1505608.png'} className= 'images' alt=''/>
                 <div className='fullproductdescription'>
                 <div className = 'fullproducttitle'>{product.title}</div>
                 <div className = 'fullproductdesc'>{product.description}</div>
