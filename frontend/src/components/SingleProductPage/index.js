@@ -18,20 +18,40 @@ function SingleProductPage({ isLoaded }) {
 
     const sessionUser = useSelector(state => state.session.user);
 
+    const singleProduct = useSelector(state => {
+        return state.product.singleProduct;
+    });
+
+    console.log(sessionUser.id, 'sessionid test')
+
+    console.log(singleProduct, 'singleproduct test')
+
     let sessionLinks;
-    if (sessionUser) {
-        sessionLinks = (
+
+
+    if(singleProduct) {
+
+        console.log(singleProduct[0].ownerId, '90999999999999999999999999999999999')
+        console.log(Object.entries(singleProduct))
+
+        if (sessionUser && (sessionUser.id === singleProduct[0].ownerId)) {
+            sessionLinks = (
+                <>
+                  <EditFormModal />
+                  <DeleteButtonModal />
+                </>
+              );
+        } else {
+          sessionLinks = (
             <>
-              <EditFormModal />
-              <DeleteButtonModal />
             </>
           );
-    } else {
-      sessionLinks = (
-        <>
-        </>
-      );
+        }
+
     }
+
+
+
 
     // console.log('teeeeeeeeeeeeeeeeeeeeeeest', history);
     // console.log('teeeeeeeeeeeeeeeeeeeeeeest', history.location);
@@ -50,9 +70,7 @@ function SingleProductPage({ isLoaded }) {
 
     // console.log(useParams, '------------------------------------------')
     
-    const singleProduct = useSelector(state => {
-        return state.product.singleProduct;
-    });
+
     
     useEffect(() => {
         dispatch(getSingleProduct(singleProductId))
