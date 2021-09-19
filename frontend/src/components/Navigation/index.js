@@ -9,10 +9,24 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
-  let sessionLinks;
+  let sessionLinks, sessionMiddleLinks;
   if (sessionUser) {
     sessionLinks = (
       <ProfileButton user={sessionUser} />
+    );
+    sessionMiddleLinks = (
+  <>
+  <div className = 'homeButton' >
+    <NavLink exact to="/myproducts">
+      <i className="fas fa-home">myProducts</i>
+    </NavLink>
+  </div>
+  <div className = 'homeButton' >
+  <NavLink exact to="/products/new">
+    <i className="fas fa-home">postProduct</i>
+  </NavLink>
+  </div>
+  </>
     );
   } else {
     sessionLinks = (
@@ -21,6 +35,10 @@ function Navigation({ isLoaded }){
         <NavLink to="/signup">Sign Up</NavLink>
       </>
     );
+    sessionMiddleLinks = (
+      <>
+      </>
+      );
   }
 
   return (
@@ -30,6 +48,9 @@ function Navigation({ isLoaded }){
         <NavLink exact to="/">
           <i className="fas fa-home">Home</i>
         </NavLink>
+      </div>
+      <div className = 'navmiddlestuff' >
+        {isLoaded && sessionMiddleLinks}
       </div>
       <div className = 'logStuff' >
         {isLoaded && sessionLinks}
