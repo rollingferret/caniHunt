@@ -22,17 +22,17 @@ function SingleProductPage({ isLoaded }) {
         return state.product.singleProduct;
     });
 
-    console.log(sessionUser.id, 'sessionid test')
+    // console.log(sessionUser.id, 'sessionid test')
 
-    console.log(singleProduct, 'singleproduct test')
+    // console.log(singleProduct, 'singleproduct test')
 
     let sessionLinks;
 
 
     if(singleProduct) {
 
-        console.log(singleProduct[0].ownerId, '90999999999999999999999999999999999')
-        console.log(Object.entries(singleProduct))
+        // console.log(singleProduct[0].ownerId, '90999999999999999999999999999999999')
+        // console.log(Object.entries(singleProduct))
 
         if (sessionUser && (sessionUser.id === singleProduct[0].ownerId)) {
             sessionLinks = (
