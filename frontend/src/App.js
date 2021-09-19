@@ -31,21 +31,21 @@ function App() {
           <Route exact path="/">
             <ProductPage />
           </Route>
-          <Route exact path="/products/new">
+          {/* <Route exact path="/products/new">
             <NewProductPage />
-          </Route>
+          </Route> */}
           <Route exact path="/myproducts">
-            <MyProductsPage />
+            <MyProductsPage isLoaded={isLoaded}/>
           </Route>
           <Route exact path="/products/:productId">
             <SingleProductPage isLoaded={isLoaded}/>
           </Route>
-          <Route exact path="/products/:productId/edit">
+          {/* <Route exact path="/products/:productId/edit">
             <EditProductPage />
           </Route>
           <Route exact path="/products/:productId/delete">
             <DeleteProductPage />
-          </Route>
+          </Route> */}
           <Route path='/'>
             The page you are looking for is not found.
           </Route>

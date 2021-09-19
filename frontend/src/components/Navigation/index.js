@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
+import NewProductFormModal from '../PostNewProductModal';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -22,9 +23,7 @@ function Navigation({ isLoaded }){
     </NavLink>
   </div>
   <div className = 'homeButton' >
-  <NavLink exact to="/products/new">
-    <i className="fas fa-home">postProduct</i>
-  </NavLink>
+    <NewProductFormModal />
   </div>
   </>
     );
