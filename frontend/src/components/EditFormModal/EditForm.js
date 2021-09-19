@@ -27,7 +27,7 @@ function EditForm() {
 
     const singleProductId = pathname.split("/")[2]
 
-    console.log(singleProductId, '99999999999999999999999999999999999999999')
+    // console.log(singleProductId, '99999999999999999999999999999999999999999')
 
 
   function reloadPage(){ 

@@ -131,7 +131,7 @@ export const deleteProduct = ({ id }) => async (dispatch) => {
     // const { id } = editProduct;
     // need to grab id somehow
     // const response = await csrfFetch(`/api/products/${parseInt(id)}`, {
-    const response = await csrfFetch(`/api/products/2/delete`, {
+    const response = await csrfFetch(`/api/products/${id}/delete`, {
 
         method: 'DELETE',
         // headers: {
@@ -277,9 +277,12 @@ const productReducer = (state=initialState, action) => {
 
         case DELETE_PRODUCT:
 
-            // newState = { ...state };
-            // delete newState[action.deleteProduct.id];
-            // return newState;
+            // newState = Object.assign({}, state);
+            // deleteProduct = action.deleteProduct;
+            // newState[deleteProduct.id] = deleteProduct;
+            newState = { ...state };
+            delete newState[action.deleteProduct.id];
+            return newState;
 
             // newState = Object.assign({}, state);
             // return newState;

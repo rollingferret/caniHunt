@@ -49,7 +49,7 @@ router.patch('/:productId/edit', restoreUser, asyncHandler( async (req, res) => 
     // const productId = req.params.productId
     // const ownerId = req.user.id;
     let { productId } = req.params
-    console.log(productId)
+    // console.log(productId)
 
     const { title, imageUrl, description, productTypeId } = req.body
 
@@ -65,12 +65,13 @@ router.patch('/:productId/edit', restoreUser, asyncHandler( async (req, res) => 
 
 router.delete('/:productId/delete', restoreUser, asyncHandler(async (req, res) => {
 
-
+    let { productId } = req.params
+    console.log(productId, '9999999999999999999999999999999999999999')
     // const singleProduct = await Product.findByPk(productId)
     // const singleProduct = await Product.findByPk({where: { productId }});
-    const singleProduct = await Product.findByPk(4);
+    const singleProduct = await Product.findByPk(productId);
 
-
+    console.log(singleProduct, '9999999999999999999999999999999999')
     await singleProduct.destroy();
 
     // const products = await Product.findAll({

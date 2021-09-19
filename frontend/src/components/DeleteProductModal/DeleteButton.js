@@ -11,12 +11,20 @@ function DeleteButtonModal() {
 
   const [errors, setErrors] = useState([]);
 
+  const {pathname} = history.location
+  // console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', pathname)
+  // console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', pathname.split("/")[2])
+
+  const singleProductId = pathname.split("/")[2]
+
+  // console.log(singleProductId, '99999999999999999999999999999999999999999')
+
   const handleSubmit = (e) => {
       e.preventDefault();
     //   console.log('You clicked submit.');
 
       const deletedProduct = {
-          id: 4
+          id: singleProductId
       };
 
       // const newItem = await dispatch(addProduct(newProduct));
