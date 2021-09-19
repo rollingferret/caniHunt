@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import DeleteButton from './DeleteButton';
 
-function DeleteButtonModal() {
+function DeleteButtonModal(props) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -10,7 +10,7 @@ function DeleteButtonModal() {
       <button onClick={() => setShowModal(true)}>Delete Product</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <DeleteButton />
+          <DeleteButton productId={props.productId}/>
         </Modal>
       )}
     </>

@@ -19,12 +19,16 @@ function DeleteButtonModal(props) {
 
   // console.log(singleProductId, '99999999999999999999999999999999999999999')
 
+  function reloadPage(){ 
+    window.location.reload(); 
+}
+
   const handleSubmit = (e) => {
       e.preventDefault();
     //   console.log('You clicked submit.');
 
       const deletedProduct = {
-          id: singleProductId?singleProductId:props.productId,
+        id: props.productId?props.productId:singleProductId,
       };
 
       // const newItem = await dispatch(addProduct(newProduct));
@@ -32,6 +36,7 @@ function DeleteButtonModal(props) {
 
       dispatch(deleteProduct(deletedProduct));
       history.push(`/myproducts`);
+      reloadPage()
       // history.push(`/users/${userId}/`);
       }
   

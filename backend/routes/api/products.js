@@ -79,12 +79,12 @@ router.patch('/:productId/edit', requireAuth, restoreUser, asyncHandler( async (
 router.delete('/:productId/delete', requireAuth, restoreUser, asyncHandler(async (req, res) => {
 
     let { productId } = req.params
-    console.log(productId, '9999999999999999999999999999999999999999')
+    // console.log(productId, '9999999999999999999999999999999999999999')
     // const singleProduct = await Product.findByPk(productId)
     // const singleProduct = await Product.findByPk({where: { productId }});
     const singleProduct = await Product.findByPk(productId);
 
-    console.log(singleProduct, '9999999999999999999999999999999999')
+    // console.log(singleProduct, '9999999999999999999999999999999999')
     await singleProduct.destroy();
 
     // const products = await Product.findAll({
