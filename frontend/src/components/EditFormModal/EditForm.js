@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { editProduct } from '../../store/product';
 
+
 function EditForm(props) {
 
   const dispatch = useDispatch();
@@ -51,7 +52,10 @@ function EditForm(props) {
 
 
       dispatch(editProduct(edittedProduct));
-      history.push(pathname);
+      // history.push(pathname);
+
+      history.push(`/myproducts`);
+
       // reloadPage()
       // history.push(`/users/${userId}/`);
       }

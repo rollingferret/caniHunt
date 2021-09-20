@@ -158,6 +158,7 @@ export const deleteProduct = ({ id }) => async (dispatch) => {
 
     const deletedItem = await response.json();
     dispatch(deleteProductAction(deletedItem));
+
     return deletedItem;
 };
 
@@ -311,7 +312,9 @@ const productReducer = (state=initialState, action) => {
                         return product
                     }
             })
-            // returnedState.push(action.editSpot);
+
+            // console.log(returnedState, '999999999999999999999999999999999')
+
             newState.list = returnedState;
             return newState;
         }
@@ -327,11 +330,20 @@ const productReducer = (state=initialState, action) => {
         case DELETE_PRODUCT: {
             
 
+                newState = {...state};
+                const productToDelete = newState.list.find((product) => product.id === action.deleteProduct.id)
+
+                let returnedState = newState.list.filter(product => product.id !== productToDelete.id)
+                    
+                // returnedState.push(action.editSpot);
+                newState.list = returnedState;
+                return newState;
+
+            // newState = Object.assign({}, state);
 
 
             // const toDelete = filter(state.list, (_, product) => product.id === deleteProduct.id);
 
-            // newState = Object.assign({}, state);
             // deleteProduct = action.deleteProduct;
             // newState[deleteProduct.id] = deleteProduct;
             // newState = { ...state, list: [ ...state.list], allProducts: [ ...state.allProducts]};
@@ -411,8 +423,8 @@ const productReducer = (state=initialState, action) => {
 
             // delete newState.allProducts[action.deleteProduct.id];
             // delete newState.list[listDeleteId];
-            // // delete newState.list[];
-            // // debugger;
+            // // // delete newState.list[];
+            // // // debugger;
             // return newState;
         }
 

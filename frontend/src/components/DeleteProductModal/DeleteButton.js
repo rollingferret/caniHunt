@@ -3,7 +3,6 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { deleteProduct  } from '../../store/product';
-import { Modal } from '../../context/Modal';
 
 
 function DeleteButtonModal(props) {

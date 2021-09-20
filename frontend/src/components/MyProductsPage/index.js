@@ -46,7 +46,7 @@ function MyProductsPage() {
         let productDetails = productList.filter(product => product.ownerId === currentUser.id );
 
 
-        console.log(productDetails, '999999999952525299999525252999999999999999999')
+        // console.log(productDetails, '999999999952525299999525252999999999999999999')
 
     }
 
@@ -58,11 +58,11 @@ function MyProductsPage() {
     //     dispatch();
     // }, [dispatch]);
 
-    console.log(productList, '23333333333333332322222222222222222')
+    // console.log(productList, '23333333333333332322222222222222222')
     // console.log('teeeeeeeeeest -----------------------3', product.list)
 
 
-    console.log('..................899999999999999999999999999999999.........')
+    // console.log('..................899999999999999999999999999999999.........')
 
     if (!productList) {
         return null;
