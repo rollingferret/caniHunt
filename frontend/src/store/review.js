@@ -126,14 +126,18 @@ export const addReview = ({ review, userId, productId }) => async (dispatch) => 
 }
 
 // export const editProduct = (editedProduct) => async (dispatch) => {
-    export const editReview = ({ review }) => async (dispatch) => {
+    export const editReview = ({ id, review }) => async (dispatch) => {
 
     // const { id } = editProduct;
     // need to grab id somehow
     // const response = await csrfFetch(`/api/products/${parseInt(id)}`, {
     // const response = await csrfFetch(`/api/products/${id}/edit`, {
 
-    const response = await csrfFetch(`/api/reviews/2/edit`, {
+
+    // console.log(id)
+    // console.log(review)
+
+    const response = await csrfFetch(`/api/reviews/${id}/edit`, {
 
 
         method: 'PATCH',
