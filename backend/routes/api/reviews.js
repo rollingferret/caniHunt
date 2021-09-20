@@ -15,6 +15,20 @@ router.get('/', restoreUser, asyncHandler( async (req, res) => {
     res.json(products)
 }))
 
+router.get('/:productId', restoreUser, asyncHandler( async (req, res) => {
+
+    let { productId } = req.params
+
+    const products = await Review.findAll({
+
+        where: {
+            productId: productId,
+        }
+    })
+
+    res.json(products)
+}))
+
 router.get('/myreviews', restoreUser, requireAuth, asyncHandler( async (req, res) => {
     const ownerId = req.user.id;
 
@@ -31,7 +45,7 @@ router.get('/myreviews', restoreUser, requireAuth, asyncHandler( async (req, res
 router.get('/:reviewId', restoreUser, asyncHandler( async (req, res) => {
 
     // console.log('9999999999999999999999999999999', req.params)
-    let { productId } = req.params
+    let { reviewId } = req.params
     // console.log(productId)
     const singleProduct = await Product.findByPk(productId)
 
@@ -40,14 +54,15 @@ router.get('/:reviewId', restoreUser, asyncHandler( async (req, res) => {
 
 router.post('/new', requireAuth, restoreUser, asyncHandler( async (req, res) => {
 
-    const ownerId = req.user.id;
+    const userId = req.user.id;
 
     // console.log(ownerId, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
 
-    const { title, imageUrl, description, productTypeId } = req.body
+    // needs productId too
+    const { review } = req.body
 
-    const newReview = await Review.create({ ownerId, title, imageUrl, description, productTypeId: +productTypeId});
+    const newReview = await Review.create({ userId, review});
 
     // console.log(newProduct, "------------------------------------------------------")
 
@@ -58,12 +73,12 @@ router.patch('/:reviewId/edit', requireAuth, restoreUser, asyncHandler( async (r
 
     // const productId = req.params.productId
     // const ownerId = req.user.id;
-    let { productId } = req.params
+    let { reviewId } = req.params
     // console.log(productId)
 
     const { review } = req.body
 
-    const edittedReview = await Review.findByPk(productId);
+    const edittedReview = await Review.findByPk(reviewId);
 
 
 
@@ -75,11 +90,11 @@ router.patch('/:reviewId/edit', requireAuth, restoreUser, asyncHandler( async (r
 
 router.delete('/:reviewId/delete', requireAuth, restoreUser, asyncHandler(async (req, res) => {
 
-    let { productId } = req.params
+    let { reviewId } = req.params
     // console.log(productId, '9999999999999999999999999999999999999999')
     // const singleProduct = await Product.findByPk(productId)
     // const singleProduct = await Product.findByPk({where: { productId }});
-    const singleReview = await Review.findByPk(productId);
+    const singleReview = await Review.findByPk(reviewId);
 
     // console.log(singleProduct, '9999999999999999999999999999999999')
     await singleReview.destroy();

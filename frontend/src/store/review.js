@@ -59,6 +59,22 @@ export const getAllReviews = () => async (dispatch) => {
     }
 };
 
+export const getAllReviewsSingleProduct = (reviewId) => async (dispatch) => {
+    // const response = await csrfFetch(`/api/products/${productId}`);
+    // const response = await csrfFetch(`/api/products/`);
+    // const product = await response.json();
+    // dispatch(getAllProductAction(product));
+    // return product
+
+    const response = await fetch(`/api/reviews/${reviewId}`);
+    
+    if (response.ok) {
+        const list = await response.json();
+        dispatch(load(list));
+        return list;
+    }
+};
+
 export const getmyAllReviews = () => async (dispatch) => {
     // const response = await csrfFetch(`/api/products/${productId}`);
     // const response = await csrfFetch(`/api/products/`);
@@ -74,6 +90,7 @@ export const getmyAllReviews = () => async (dispatch) => {
         return list;
     }
 };
+
 
 export const getSingleReview = (reviewId) => async (dispatch) => {
     // const response = await csrfFetch(`/api/products/${productId}`);

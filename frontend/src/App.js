@@ -48,7 +48,7 @@ function App() {
             <DeleteProductPage />
           </Route> */}
           <Route exact path='/reviews'>
-            <GetAllReviewsPage /> TESSSSSSSST
+            <GetAllReviewsPage />
           </Route>
           <Route path='/'>
             The page you are looking for is not found.

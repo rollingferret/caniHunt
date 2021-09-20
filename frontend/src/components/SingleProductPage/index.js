@@ -6,6 +6,7 @@ import EditFormModal from '../EditFormModal';
 import DeleteButtonModal from '../DeleteProductModal';
 import './singleproductpage.css'
 import { NavLink } from 'react-router-dom';
+import GetAllReviewsForSingleProduct from '../GetAllReviewsForSingleProduct';
 
 
 function SingleProductPage({ isLoaded }) {
@@ -105,7 +106,8 @@ function SingleProductPage({ isLoaded }) {
             <div className='fullproductright'>{ isLoaded && sessionLinks}</div>
             </div>
             )))}
-            </div>
+            </div>  
+            <GetAllReviewsForSingleProduct />
 
         </>
     );

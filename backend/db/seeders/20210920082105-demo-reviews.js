@@ -83,6 +83,48 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        userId: 1,
+        productId: 3,
+        review: faker.lorem.paragraph(),  
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        userId: 2,
+        productId: 4,
+        review: faker.lorem.paragraph(),  
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        userId: 3,
+        productId: 5,
+        review: faker.lorem.paragraph(),  
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        userId: 4,
+        productId: 6,
+        review: faker.lorem.paragraph(),  
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        userId: 5,
+        productId: 1,
+        review: faker.lorem.paragraph(),  
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        userId: 5,
+        productId: 2,
+        review: faker.lorem.paragraph(),  
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ], {});
   },
 
