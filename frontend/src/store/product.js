@@ -158,6 +158,7 @@ export const deleteProduct = ({ id }) => async (dispatch) => {
 
     const deletedItem = await response.json();
     dispatch(deleteProductAction(deletedItem));
+
     return deletedItem;
 };
 
@@ -234,7 +235,7 @@ const productReducer = (state=initialState, action) => {
             return {
                 ...state,
                 allProducts: { ...allProduct },
-                list: sortList(action.list),
+                list: sortList(action.list)
             };
         }
         case LOAD_SINGLE_PRODUCT: {
@@ -277,11 +278,46 @@ const productReducer = (state=initialState, action) => {
             newState = Object.assign({}, state);
             newState.product = action.product;
             return newState;
-        case EDIT_PRODUCT:
-            newState = Object.assign({}, state);
-            newProduct = action.editedProduct;
-            newState[newProduct.id] = newProduct;
+        case EDIT_PRODUCT: {
+
+
+            // newState = Object.assign({}, state);
+            // // newState = { ...state, list: [ ...state.list], allProducts: [ ...state.allProducts]};
+            // newProduct = action.editedProduct;
+            // newState.allProducts[newProduct.id] = newProduct;
+
+            // let listDeleteId;
+
+            // for (const property in newState.list) {
+            //     // console.log(`${property}: ${object[property]}`);
+            //     // console.log(object[property].id)
+            //     if (newState.list[property].id === action.editedProduct.id) {
+
+            //     listDeleteId = property
+            //     }
+            //   }
+
+
+
+            // newState.list[listDeleteId] = newProduct;
+
+            // return newState; 
+            newState = {...state};
+            const productToupdate = newState.list.find((product) => product.id === action.editedProduct.id)
+
+            let returnedState = newState.list.map(product => {
+                    if (product.id === productToupdate.id) {
+                        return action.editedProduct
+                    } else {
+                        return product
+                    }
+            })
+
+            // console.log(returnedState, '999999999999999999999999999999999')
+
+            newState.list = returnedState;
             return newState;
+        }
             // return {
             //     ...state,
             //     [action.list.id]: action.editedProduct,
@@ -291,14 +327,106 @@ const productReducer = (state=initialState, action) => {
             // will only add tgo
 
 
-        case DELETE_PRODUCT:
+        case DELETE_PRODUCT: {
+            
+
+                newState = {...state};
+                const productToDelete = newState.list.find((product) => product.id === action.deleteProduct.id)
+
+                let returnedState = newState.list.filter(product => product.id !== productToDelete.id)
+                    
+                // returnedState.push(action.editSpot);
+                newState.list = returnedState;
+                return newState;
 
             // newState = Object.assign({}, state);
+
+
+            // const toDelete = filter(state.list, (_, product) => product.id === deleteProduct.id);
+
             // deleteProduct = action.deleteProduct;
             // newState[deleteProduct.id] = deleteProduct;
-            newState = { ...state };
-            delete newState[action.deleteProduct.id];
-            return newState;
+            // newState = { ...state, list: [ ...state.list], allProducts: [ ...state.allProducts]};
+
+            // const b = newState.list.filter((product) => product.id === deleteProduct.id)
+            // console.log(b, '------------------------------------------------')
+
+
+
+            // console.log(newState.list, '-----------------------------------------------------')
+            // console.log(newState.list.length, '---------------------444444444444444444--------------------------------')
+            // console.log(newState.list[0].id, '---------------------444444444444444444--------------------------------')
+            // console.log(action.deleteProduct.id, '---------------------54555555555555555555555555--------------------------------')
+
+            // console.log(newState.list[0].id === action.deleteProduct.id, '---------------------999999999999999999999--------------------------------')
+
+            // newState.list.forEach(product => {
+            //     if (product.id === action.deleteProduct.id) {
+
+            //         console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest')
+            //         console.log(Object.entries(newState.list), '3333333333333333333333333333333333333333333')
+            //         console.log(Object.keys(newState.list), '222222222222222222222222222222222222222222222222222')
+            //     }
+            // });
+
+            // function findById(o, id) {
+            //     //Early return
+            //     if( o.id === id ){
+            //       return o;
+            //     }
+            //     var result, p; 
+            //     for (p in o) {
+            //         if( o.hasOwnProperty(p) && typeof o[p] === 'object' ) {
+            //             result = findById(o[p], id);
+            //             if(result){
+            //                 return result;
+            //             }
+            //         }
+            //     }
+            //     return result;
+            // }
+
+
+            // let listDeleteId;
+
+            // for (const property in newState.list) {
+            //     // console.log(`${property}: ${object[property]}`);
+            //     // console.log(object[property].id)
+            //     if (newState.list[property].id === action.deleteProduct.id) {
+
+            //     listDeleteId = property
+            //     }
+            //   }
+              
+
+            //   debugger
+            // function getKeyByValue(object, value) {
+            //     return Object.keys(object).find(key => object[key] === value);
+            //   }
+
+
+            //   console.log(getKeyByValue(newState.list, action.deleteProduct.id), '99999999999999999999999999999999999999999999999999')
+            // console.log(findById(newState.list, action.deleteProduct.id), '9999999999999999999999999999999999999999999999999')
+
+            // for (let i = 0, i< newState.list.length, i++) {
+
+            // if (newState.list[i].id === action.deleteProduct.id) {
+
+
+
+            // }
+
+            // }
+
+
+
+
+            // delete newState.allProducts[action.deleteProduct.id];
+            // delete newState.list[listDeleteId];
+            // // // delete newState.list[];
+            // // // debugger;
+            // return newState;
+        }
 
             // newState = Object.assign({}, state);
             // return newState;

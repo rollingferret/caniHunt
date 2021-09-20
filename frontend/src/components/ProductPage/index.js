@@ -29,7 +29,7 @@ function ProductPage() {
     //     dispatch();
     // }, [dispatch]);
 
-    // console.log(productList)
+    console.log(productList)
     // console.log('teeeeeeeeeest -----------------------3', product.list)
 
 
@@ -41,7 +41,7 @@ function ProductPage() {
             <div className = 'fullproductpage'>
             {/* <div>{product[1].title}</div> */}
             {productList.map((product => (
-            <NavLink to = {`/products/${product.id}`} key={product.id} className= 'products'>
+            <NavLink to = {`/products/${product.id}`} key={`fullproduct_${product.id}`} className= 'products'>
                 <div className = 'fullproductleft'>
                 <img src={product.imageUrl?product.imageUrl:'https://cdn.iconscout.com/icon/premium/png-256-thumb/no-image-1765819-1505608.png'} className= 'images' alt=''/>
                 <div className='fullproductdescription'>

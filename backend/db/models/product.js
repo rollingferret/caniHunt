@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Product.belongsTo( models.User, { foreignKey: 'ownerId' })
     Product.belongsTo( models.ProductType, { foreignKey: 'productTypeId' })
+    Product.hasMany( models.Review, { foreignKey: 'productId' })
 
 
   };

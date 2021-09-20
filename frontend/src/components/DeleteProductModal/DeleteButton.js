@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { deleteProduct  } from '../../store/product';
 
+
 function DeleteButtonModal(props) {
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [errors, setErrors] = useState([]);
+
 
   const {pathname} = history.location
   // console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', pathname)
@@ -18,6 +20,9 @@ function DeleteButtonModal(props) {
   const singleProductId = pathname.split("/")[2]
 
   // console.log(singleProductId, '99999999999999999999999999999999999999999')
+
+
+  // const [showModal, setShowModal] = useState(true);
 
   function reloadPage(){ 
     window.location.reload(); 
@@ -33,10 +38,14 @@ function DeleteButtonModal(props) {
 
       // const newItem = await dispatch(addProduct(newProduct));
 
+      // console.log()
 
       dispatch(deleteProduct(deletedProduct));
+      // history.push(`/`);
       history.push(`/myproducts`);
-      reloadPage()
+      // setShowModal(false)
+
+      // reloadPage()
       // history.push(`/users/${userId}/`);
       }
   

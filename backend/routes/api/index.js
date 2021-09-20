@@ -5,8 +5,11 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 
 const productsRouter = require("./products.js");
+const reviewsRouter = require("./reviews.js");
+
 
 router.use("/products", productsRouter);
+router.use("/reviews", reviewsRouter);
 
 
 router.use('/session', sessionRouter);

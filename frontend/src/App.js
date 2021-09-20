@@ -11,6 +11,7 @@ import EditProductPage from './components/EditProductPage';
 import SingleProductPage from './components/SingleProductPage';
 import DeleteProductPage from './components/DeleteProductPage';
 import MyProductsPage from './components/MyProductsPage';
+import GetAllReviewsPage from './components/GetAllReviewsPage';
 
 
 function App() {
@@ -46,6 +47,9 @@ function App() {
           <Route exact path="/products/:productId/delete">
             <DeleteProductPage />
           </Route> */}
+          <Route exact path='/reviews'>
+            <GetAllReviewsPage />
+          </Route>
           <Route path='/'>
             The page you are looking for is not found.
           </Route>
