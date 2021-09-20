@@ -54,15 +54,15 @@ router.get('/:reviewId', restoreUser, asyncHandler( async (req, res) => {
 
 router.post('/new', requireAuth, restoreUser, asyncHandler( async (req, res) => {
 
-    const userId = req.user.id;
+    // const userId = req.user.id;
 
     // console.log(ownerId, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
 
     // needs productId too
-    const { review } = req.body
+    const { review, userId, productId } = req.body
 
-    const newReview = await Review.create({ userId, review});
+    const newReview = await Review.create({ review, userId, productId });
 
     // console.log(newProduct, "------------------------------------------------------")
 
