@@ -280,27 +280,40 @@ const productReducer = (state=initialState, action) => {
         case EDIT_PRODUCT: {
 
 
-            newState = Object.assign({}, state);
-            // newState = { ...state, list: [ ...state.list], allProducts: [ ...state.allProducts]};
-            newProduct = action.editedProduct;
-            newState.allProducts[newProduct.id] = newProduct;
+            // newState = Object.assign({}, state);
+            // // newState = { ...state, list: [ ...state.list], allProducts: [ ...state.allProducts]};
+            // newProduct = action.editedProduct;
+            // newState.allProducts[newProduct.id] = newProduct;
 
-            let listDeleteId;
+            // let listDeleteId;
 
-            for (const property in newState.list) {
-                // console.log(`${property}: ${object[property]}`);
-                // console.log(object[property].id)
-                if (newState.list[property].id === action.editedProduct.id) {
+            // for (const property in newState.list) {
+            //     // console.log(`${property}: ${object[property]}`);
+            //     // console.log(object[property].id)
+            //     if (newState.list[property].id === action.editedProduct.id) {
 
-                listDeleteId = property
-                }
-              }
+            //     listDeleteId = property
+            //     }
+            //   }
 
 
 
-            newState.list[listDeleteId] = newProduct;
+            // newState.list[listDeleteId] = newProduct;
 
-            return newState; 
+            // return newState; 
+            newState = {...state};
+            const productToupdate = newState.list.find((product) => product.id === action.editedProduct.id)
+
+            let returnedState = newState.list.map(product => {
+                    if (product.id === productToupdate.id) {
+                        return action.editedProduct
+                    } else {
+                        return product
+                    }
+            })
+            // returnedState.push(action.editSpot);
+            newState.list = returnedState;
+            return newState;
         }
             // return {
             //     ...state,
@@ -318,7 +331,7 @@ const productReducer = (state=initialState, action) => {
 
             // const toDelete = filter(state.list, (_, product) => product.id === deleteProduct.id);
 
-            newState = Object.assign({}, state);
+            // newState = Object.assign({}, state);
             // deleteProduct = action.deleteProduct;
             // newState[deleteProduct.id] = deleteProduct;
             // newState = { ...state, list: [ ...state.list], allProducts: [ ...state.allProducts]};
@@ -362,16 +375,16 @@ const productReducer = (state=initialState, action) => {
             // }
 
 
-            let listDeleteId;
+            // let listDeleteId;
 
-            for (const property in newState.list) {
-                // console.log(`${property}: ${object[property]}`);
-                // console.log(object[property].id)
-                if (newState.list[property].id === action.deleteProduct.id) {
+            // for (const property in newState.list) {
+            //     // console.log(`${property}: ${object[property]}`);
+            //     // console.log(object[property].id)
+            //     if (newState.list[property].id === action.deleteProduct.id) {
 
-                listDeleteId = property
-                }
-              }
+            //     listDeleteId = property
+            //     }
+            //   }
               
 
             //   debugger
@@ -396,11 +409,11 @@ const productReducer = (state=initialState, action) => {
 
 
 
-            delete newState.allProducts[action.deleteProduct.id];
-            delete newState.list[listDeleteId];
-            // delete newState.list[];
-            // debugger;
-            return newState;
+            // delete newState.allProducts[action.deleteProduct.id];
+            // delete newState.list[listDeleteId];
+            // // delete newState.list[];
+            // // debugger;
+            // return newState;
         }
 
             // newState = Object.assign({}, state);

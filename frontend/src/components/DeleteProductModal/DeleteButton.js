@@ -13,6 +13,7 @@ function DeleteButtonModal(props) {
 
   const [errors, setErrors] = useState([]);
 
+
   const {pathname} = history.location
   // console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', pathname)
   // console.log('teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', pathname.split("/")[2])
@@ -21,6 +22,8 @@ function DeleteButtonModal(props) {
 
   // console.log(singleProductId, '99999999999999999999999999999999999999999')
 
+
+  // const [showModal, setShowModal] = useState(true);
 
   function reloadPage(){ 
     window.location.reload(); 
@@ -41,6 +44,7 @@ function DeleteButtonModal(props) {
       dispatch(deleteProduct(deletedProduct));
       // history.push(`/`);
       history.push(`/myproducts`);
+      // setShowModal(false)
 
       // reloadPage()
       // history.push(`/users/${userId}/`);
