@@ -7,6 +7,7 @@ import DeleteButtonModal from '../DeleteProductModal';
 import './singleproductpage.css'
 import { NavLink } from 'react-router-dom';
 import GetAllReviewsForSingleProduct from '../GetAllReviewsForSingleProduct';
+import NewProductFormModal from '../CreateReviewModal';
 
 
 function SingleProductPage({ isLoaded }) {
@@ -103,7 +104,7 @@ function SingleProductPage({ isLoaded }) {
                 <div className='fullproductbottom'>num reviews</div>
                 </div>
             </div>
-            <div className='fullproductright'>{ isLoaded && sessionLinks}</div>
+            <div className='fullproductright'>{ isLoaded && sessionLinks} <NewProductFormModal productId={product.id}/></div>
             </div>
             )))}
             </div>  
