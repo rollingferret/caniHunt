@@ -4,6 +4,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import { getAllReviewsSingleProduct } from '../../store/review';
 import './getallreviewsforsingleproduct.css'
 import { NavLink } from 'react-router-dom';
+import EditReviewFormModal from '../EditReviewModal';
+
 
 function GetAllReviewsForSingleProduct() {
 
@@ -65,9 +67,12 @@ function GetAllReviewsForSingleProduct() {
             <div key={`fullreview_${review.id}`} className= 'products'>
 
                 <div className = 'fullproducttitle'>{review.review}</div>
+                <div className = 'fullproducttitle'>{review.id}</div>
 
+                <EditReviewFormModal reviewId={review.id}/>
             </div>
             )))}
+
             </div>
         </>
     );

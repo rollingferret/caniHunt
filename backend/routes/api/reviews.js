@@ -71,18 +71,18 @@ router.post('/new', requireAuth, restoreUser, asyncHandler( async (req, res) => 
 
 router.patch('/:reviewId/edit', requireAuth, restoreUser, asyncHandler( async (req, res) => {
 
-    // const productId = req.params.productId
     // const ownerId = req.user.id;
-    let { reviewId } = req.params
-    // console.log(productId)
 
+    // console.log(ownerId)
+    // console.log(req.params.reviewId, '999999999999999999999999999')
     const { review } = req.body
 
-    const edittedReview = await Review.findByPk(reviewId);
+    // console.log(req.body, '8988888888888888888888888888888888')
+
+    const edittedReview = await Review.findByPk(req.params.reviewId);
 
 
-
-    await edittedProduct.update({ review });
+    await edittedReview.update({ review });
 
 
     res.json(edittedReview)
