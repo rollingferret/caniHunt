@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { editReview } from '../../store/review';
+import { deleteReview } from '../../store/review';
 
-function EditReviewForm(props) {
+function DeleteReviewForm(props) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -18,52 +18,39 @@ function EditReviewForm(props) {
     const [errors, setErrors] = useState([]);
 
     const {pathname} = history.location
-
-    // console.log(props, 'teeeeeeeeee99999999999999999999999999999eeeeeest')
+    // const singleProductId = pathname.split("/")[2]
 
     //need to get userId and productId
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(props.reviewId, 'teeeeeeeeee99999999999999999999999999999eeeeeest')
 
-        const edittedReview = {
+        const deleteReviewitem= {
             id: props.reviewId,
-            review: review
-        };
-
-        // console.log(edittedReview, '777777777777777777777777777777777777777777777')
+          };
+    
 
         // console.log(newReview, '99999999999999999999999999999999999')
         // const newItem = await dispatch(addProduct(newProduct));
 
 
-        dispatch(editReview(edittedReview));
+        dispatch(deleteReview(deleteReviewitem));
         history.push(pathname);
         // history.push(`/users/${userId}/`);
         }
     
     return (
         <>
-            <form className="product-form" onSubmit={handleSubmit}>
-      <label>
-        Review
-        <input
-          type="review"
-          name="review"
-          value={review}
-          onChange={(e) => setReview(e.target.value)}
-        />
-      </label>
-      <button
-        type="submit"
-        disabled={errors.length > 0}
-      >
-        Edit your Review!
-      </button>
-    </form>
-        </>
-    );
+        <form className='delete-button' onSubmit={handleSubmit}>
+        <button
+            type="submit"
+            disabled={errors.length > 0}
+          >
+            Delete your Review!
+          </button>
+        </form>
+          </>
+      );
 }
 
-export default EditReviewForm;
+export default DeleteReviewForm;

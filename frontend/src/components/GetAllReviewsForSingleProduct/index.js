@@ -5,6 +5,7 @@ import { getAllReviewsSingleProduct } from '../../store/review';
 import './getallreviewsforsingleproduct.css'
 import { NavLink } from 'react-router-dom';
 import EditReviewFormModal from '../EditReviewModal';
+import DeleteReviewModal from '../DeleteReviewModal';
 
 
 function GetAllReviewsForSingleProduct() {
@@ -70,6 +71,7 @@ function GetAllReviewsForSingleProduct() {
                 <div className = 'fullproducttitle'>{review.id}</div>
 
                 <EditReviewFormModal reviewId={review.id}/>
+                <DeleteReviewModal reviewId={review.id}/>
             </div>
             )))}
 
