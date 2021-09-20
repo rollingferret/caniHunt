@@ -17,12 +17,12 @@ function Navigation({ isLoaded }){
     );
     sessionMiddleLinks = (
   <>
-  <div className = 'homeButton' >
+  <div className = 'myproducts' >
     <NavLink exact to="/myproducts">
       <i className="fas fa-home">myProducts</i>
     </NavLink>
   </div>
-  <div className = 'homeButton' >
+  <div className = 'postproducts' >
     <NewProductFormModal />
   </div>
   </>
