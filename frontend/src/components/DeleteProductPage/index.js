@@ -13,7 +13,7 @@ function DeleteProductPage() {
 
   const handleSubmit = (e) => {
       e.preventDefault();
-      console.log('You clicked submit.');
+      // console.log('You clicked submit.');
 
       const deletedProduct = {
           id: 4
