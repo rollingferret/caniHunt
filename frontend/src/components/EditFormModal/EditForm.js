@@ -52,7 +52,7 @@ function EditForm(props) {
 
       dispatch(editProduct(edittedProduct));
       history.push(pathname);
-      reloadPage()
+      // reloadPage()
       // history.push(`/users/${userId}/`);
       }
   

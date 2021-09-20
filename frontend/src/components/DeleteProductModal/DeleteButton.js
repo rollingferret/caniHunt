@@ -3,6 +3,8 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { deleteProduct  } from '../../store/product';
+import { Modal } from '../../context/Modal';
+
 
 function DeleteButtonModal(props) {
 
@@ -19,6 +21,7 @@ function DeleteButtonModal(props) {
 
   // console.log(singleProductId, '99999999999999999999999999999999999999999')
 
+
   function reloadPage(){ 
     window.location.reload(); 
 }
@@ -33,10 +36,13 @@ function DeleteButtonModal(props) {
 
       // const newItem = await dispatch(addProduct(newProduct));
 
+      // console.log()
 
       dispatch(deleteProduct(deletedProduct));
+      // history.push(`/`);
       history.push(`/myproducts`);
-      reloadPage()
+
+      // reloadPage()
       // history.push(`/users/${userId}/`);
       }
   
