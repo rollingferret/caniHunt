@@ -31,7 +31,7 @@ function NewReviewForm(props) {
             review: review
         };
 
-        console.log(newReview, '99999999999999999999999999999999999')
+        // console.log(newReview, '99999999999999999999999999999999999')
         // const newItem = await dispatch(addProduct(newProduct));
 
 
